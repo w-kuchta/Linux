@@ -244,67 +244,102 @@ Stany jednostek:
  disabled
  
  systemctl - zarządza
+ 
  systemctl --all - aktywne i nieaktywne
+ 
  systemctl start httpd.service
+ 
  systemctl stop htt...
+ 
  systemctl reload http...
+ 
  systemctl restart http...
+ 
  systemctl reload-or-restart htt...
+ 
  systemctl kill htt...
+ 
  systemctl status httt....
+ 
  systemctl get-default - domyslny cel
+ 
  systemctl set-default multi-user.target - zmiana na tryb tekstowy multiuser
+ 
  systemctl list-units  --type target - aktywne cele
+ 
  systemctl isolate emergency.target - jak init 1, inne targety zostaną wyłączone, uruchomiony zostanie podany z zaleznosciami
   
  grub, dodanie do parametrów jadra system.unit=emergency.target spowoduje uruchomienie tego trybu
  
  systemctl poweroff
+ 
  systemctl reboot
+ 
  systemctl suspent
+ 
  systemctl hibernate
+ 
  systemctl enable tralall.service
+ 
  systemctl disable tralall.service 
+ 
  systemctl is-enabled trall.service
 
  systemd-journald.service - jednostka rejestrowania zdarzeń
+ 
  /run/log/journal - logi w pamięci
+ 
  /var/log/journal - logi na dysku
  
 -unit usera  
+
 ~/.config/systemd/user/my-service.service
+
 /usr/lib/systemd/user/my-service.service
 
 3. Upstart
+   
 events - poziomy pracy zastąpione zdarzeniami, w reakcji na nie uruchamiają są jobs które uruchamiaja task i services
+
 /etc/init - joby
+
 exec - uruchomienie procesu
+
 respawn - przy niespodziewanym zakończeniu uruchomić ponownie
 
 -przesyłanie zdarzeń i uruchamianie / zatrzymanie usług
+
 initctl stop ssh
+
 initctl list
 
 -wyłączenie automatycznego uruchamiania
+
 echo "manual" >> /etc/init/mojserwis.override
 
 .init - w katalogu domowym definiujemy własne joby, np. tunele vpn/ssh które w odróżnieniu od .bashrc będą sie restartować w razie awarii albo definiować zleżności
 
 -odpytanie wszystkich skryptów używających uruchamiania system V
+
  sudo service --status-all
 
 4. Środowisko graficzne
+5. 
 gnome-session-properties - dla GNOME 3
 
 
 ### Permission
 
 bit setuid - plik wykonywalny uruchomi się na prawach właściciela, dla zwykłych plików nie ma znaczenia 
+
  ls -l /bin/passwd
+ 
  -rwsr-xr-x 1 root root 68208 lis 29 12:53 /bin/passwd
+ 
 chmod u+s file 
 
 bit setgid - dla katalogu, pliki i katalogi tworzone w tym katalogu będą należały do grupy z tego katalogu, dla pliku zwykłych plików nie ma znaczenia
+
 chmod g+s file
 
 bit sticky - dla katalogu, pliki znajdujące się w nim ma prawo kasować tylko root, właściciel katalogu i właściciel pliku. Bez niego każdy kto może pisać do katalogu może usuwać wszystkie pliki. Nawet jeśli nie ma praw do pliku a prawa zapisu do katalogu do plik mozna usunać chyba ze jest ustawiony sticky bit.
@@ -312,10 +347,15 @@ bit sticky - dla katalogu, pliki znajdujące się w nim ma prawo kasować tylko 
 ls -la /tmp
 
 chmod
+
  u g o a - domyślne a np. +x wyjątek +w
+ 
  + - =
+   - 
  r w x s t X (ustawienie x tylko katalogom)
+
  +w zapis tylko dla właściciela i grupy
+ 
  chmod u+w file
  
 Liczbowo
@@ -326,58 +366,79 @@ Liczbowo
  1			1					1		1			execute
  
 4 - setuid
+
 2 - setgid 
+
 1 - sticky
  
 chmod 4744 file
 
 Domyślne wyjściowe uprawnienia:
+
 plik - 0666 (rw-rw-rw)
+
 katalog - 0777 (rwx-rwx-rwx)
 
 umask - prawa odejmowane nowo tworzonym plikom od wartości wyjściowych
+
 umask
+
 002
 
 
 ### Shortcuts
 Alt+. - ostatni parametr polecenia
+
 Ctrl+R nazwa - wyszukaj ostatnie polecenie
+
 Ctrl+u - usun wszystko po lewej
+
 Ctrl+a - na początek
+
 Ctrl+e - na koniec
+
 Ctrl+strzalka - przejdź do słowa
+
 Ctrl+w - usuń słowo w lewo
+
 Ctrl+c - zakończ linie, przejdź do nowej
+
 Shift+PgUp/PgDown - strona góra/dol
+
 Ctrl+d - zamknij/wyloguj
+
 Ctrl+l - wyczyść ekran
 
 
 ### Others
 
 Standardowe wejście, strumień stdin, deskryptor 0, plik
+
 Standardowe wyjście, strumień stdout, deskryptor 1, plik
+
 Standardowe wyjście błędów stderr, deskryptor 2, plik
 
 cut -d: -f1 < /etc/passwd
+
 cat /etc/passwd | cut -d ....
 
 cat /etc/passwd > file
 
 -dowiązanie
+
 cat /etc/passwd > file 2>&1
 
 | - operator potoku
+
 <> - operatory przekierowania
 
 - polecenia w poleceniach
+  
 echo `cat /etc/passwd`
+
 echo $(date)
+
 echo $(date +%d.%m.%Y)
-
-
-
 
 
 -funkcje mieszajace
@@ -385,15 +446,14 @@ echo $(date +%d.%m.%Y)
 echo "dasdadas" | md5sum
 
 md5sum test > sumy.txt
+
 md5sum test2 >> sumy.txt
+
 md5sum test3 >> sumy.txt
 
 md5sum -c sumy.txt
 
-
-
 sha256sum -c sha256sum.txt.asc   
-
 
 wget https://www.centos.org/keys/RPM-GPG-KEY-CentOS-7
 gpg --show-keys RPM-GPG-KEY-CentOS-7
