@@ -77,23 +77,23 @@
    ``` bash
    cut -d: -f1 < /etc/passwd
    ```
-   tee - stanadardowe wejscie na wyjscie i jeszcze d o pliku, rozdzila strumien na dwa
-wc - zlicza -l linie, -w slowa, -c znaki
-head - wypisz -c znakow, -n linii
-tail - wypisz ostatnie -z znakow, -n linii
-tr lancuch lancuch - zmian kazdy znaak z lewego na prawy
+tee - stanadardowe wejście na wyjście i jeszcze d o pliku, rozdziela strumień na dwa
+wc - zlicza -l linie, -w słowa, -c znaki
+head - wypisz -c znaków, -n linii
+tail - wypisz ostatnie -z znaków, -n linii
+tr lancuch lancuch - zmian każdy znak z lewego na prawy
 expand - zmaien tab na spacje
 unexpand - spacje na tabulacje
 nl - numeruj linie
-od - kody bajtow otrzymanych danych, domyslnie osemkowe
+od - kody bajtów otrzymanych danych, domyslnie osemkowe
 fmt - formatowanie wierszy, zawijanie
 pr - dzieli dane na strony, 
-split - dzili plik na rowne czesci po 1000 linii i zapisuje z plikach xaa, xab,xac ...
-join laczy dwa koniecznie posortowane piki majace wspolna kolumne
-watch -n 1 date - urucmianie polecenia co 1 sekunde
+split - dzili plik na równe części po 1000 linii i zapisuje z plikach xaa, xab,xac ...
+join łączy dwa koniecznie posortowane piki mające wspólną kolumnę
+watch -n 1 date - urucmianie polecenia co 1 sekundę
 
-diff test test2 - porownuje 2 pliki jesli takie same to nic nie wyswietla, jesli rozne wyswietla roznice
-sdiff test test2 - porownuje i wyswieta 2 pliki
+diff test test2 - porównuje 2 pliki jeśli takie same to nic nie wyświetla, jeśli różne wyświetla różnicę
+sdiff test test2 - porównuje i wyświetla 2 pliki
    
 **[⬆ Back to Top](#table-of-contents)**
 
@@ -152,7 +152,7 @@ rcS.d, rc5.d,... - uruchamianie w zależności od poziomu pracy
 runlevel - poziom pracy
 telinit 2 lub init 2 - zmiana poziomu pracy
 
-Usługi są wyłączane a później uruchamiane, uruchamiane i zmykane  w kolejnosci alfabetycznej
+Usługi są wyłączane a później uruchamiane, uruchamiane i zamykane w kolejności alfabetycznej
 S50usluga - start
 K50uslug - kill
 
@@ -178,7 +178,7 @@ Stany jednostek:
  enabled
  disabled
  
- systemctl - zarzdza
+ systemctl - zarządza
  systemctl --all - aktywne i nieaktywne
  systemctl start httpd.service
  systemctl stop htt...
@@ -190,9 +190,9 @@ Stany jednostek:
  systemctl get-default - domyslny cel
  systemctl set-default multi-user.target - zmiana na tryb tekstowy multiuser
  systemctl list-units  --type target - aktywne cele
- systemctl isolate emergency.target - jak init 1, inne targety zostana wylaczone, uruchomiony zostanie podany z zaleznosciami
+ systemctl isolate emergency.target - jak init 1, inne targety zostaną wyłączone, uruchomiony zostanie podany z zaleznosciami
   
- grub, dodanie do parmaetrow jadra system.unit=emergency.target spowoduje uruchomienie tego trybu
+ grub, dodanie do parametrów jadra system.unit=emergency.target spowoduje uruchomienie tego trybu
  
  systemctl poweroff
  systemctl reboot
@@ -202,8 +202,8 @@ Stany jednostek:
  systemctl disable tralall.service 
  systemctl is-enabled trall.service
 
- systemd-journald.service - jednostka rejestrowania zdarzen
- /run/log/journal - logi w pamieci
+ systemd-journald.service - jednostka rejestrowania zdarzeń
+ /run/log/journal - logi w pamięci
  /var/log/journal - logi na dysku
  
 -unit usera  
@@ -211,21 +211,21 @@ Stany jednostek:
 /usr/lib/systemd/user/my-service.service
 
 3. Upstart
-events - poziomy pracy zastąpione zdarzeniami, w rakcji na nie uruchmiane są jobs które uruchamiaja task i services
+events - poziomy pracy zastąpione zdarzeniami, w reakcji na nie uruchamiają są jobs które uruchamiaja task i services
 /etc/init - joby
 exec - uruchomienie procesu
-respawn - przy niespodziewanym zakonczeniu uruchomic ponownie
+respawn - przy niespodziewanym zakończeniu uruchomić ponownie
 
--przesylanie zdarzen i uruchamianie / zatrzymanie uslug
+-przesyłanie zdarzeń i uruchamianie / zatrzymanie usług
 initctl stop ssh
 initctl list
 
--wylaczenie automatyczne uruchminia
+-wyłączenie automatycznego uruchamiania
 echo "manual" >> /etc/init/mojserwis.override
 
-.init - w katalogu domowym definiujemy własne joby, np. tunele vpn/ssh które w odróżnieniu od .bashrc będą sie restartowac w razie awarii albo definiować zleżności
+.init - w katalogu domowym definiujemy własne joby, np. tunele vpn/ssh które w odróżnieniu od .bashrc będą sie restartować w razie awarii albo definiować zleżności
 
--odpytanie wszystkich skryptow używających uruchamiania system V
+-odpytanie wszystkich skryptów używających uruchamiania system V
  sudo service --status-all
 
 4. Środowisko graficzne
@@ -234,28 +234,28 @@ gnome-session-properties - dla GNOME 3
 
 ### Permission
 
-bit setuid - plik wykonywalny uruchomi się na prawach własciciela dla zwykłych plków nie ma znaczenia 
+bit setuid - plik wykonywalny uruchomi się na prawach właściciela, dla zwykłych plików nie ma znaczenia 
  ls -l /bin/passwd
  -rwsr-xr-x 1 root root 68208 lis 29 12:53 /bin/passwd
 chmod u+s file 
 
-bit setgid - dla katalogu, pliki i katalogi tworzone w tym katalogu beda nalezaly do grupy z tego katalogu, dla pliku zwykłych plików nie ma znaczenia
+bit setgid - dla katalogu, pliki i katalogi tworzone w tym katalogu będą należały do grupy z tego katalogu, dla pliku zwykłych plików nie ma znaczenia
 chmod g+s file
 
-bit sticky - dla katalogu, pliki znajdujace sie w nim ma prawo kasowac tylko root, wlasciciel katalogu i wlasciciel pliku. Bez niego każdy kto może pisać do katalogu może usuwać wszystkie pliki. Nawet jeśli nie ma praw do pliku a prawa zapisu do katalogu do plik mozna usunać chyba ze jest ustawiony sticky bit.
+bit sticky - dla katalogu, pliki znajdujące się w nim ma prawo kasować tylko root, właściciel katalogu i właściciel pliku. Bez niego każdy kto może pisać do katalogu może usuwać wszystkie pliki. Nawet jeśli nie ma praw do pliku a prawa zapisu do katalogu do plik mozna usunać chyba ze jest ustawiony sticky bit.
 
 ls -la /tmp
 
 chmod
- u g o a - domyslne a np. +x wyjatek +w
+ u g o a - domyślne a np. +x wyjątek +w
  + - =
  r w x s t X (ustawienie x tylko katalogom)
- +w zapis tylko dla wlasciciela i grupy
+ +w zapis tylko dla właściciela i grupy
  chmod u+w file
  
 Liczbowo
 
- opcje		wlasciciel		grupy		pozostali	
+ opcje		właściciel		grupy		pozostali	
  4			4					4		4			read
  2			2					2		2			zapis
  1			1					1		1			execute
@@ -279,28 +279,28 @@ umask
 Alt+. - ostatni parametr polecenia
 Ctrl+R nazwa - wyszukaj ostatnie polecenie
 Ctrl+u - usun wszystko po lewej
-Ctrl+a - na poczatek
+Ctrl+a - na początek
 Ctrl+e - na koniec
-Ctrl+strzalka - przejsdz do slowa
-Ctrl+w - usun slowo w lewo
-Ctrl+c - zakoncz linie, przejdz do nowej
-Shift+PgUp/PgDown - strona gora/dol
+Ctrl+strzalka - przejdź do słowa
+Ctrl+w - usuń słowo w lewo
+Ctrl+c - zakończ linie, przejdź do nowej
+Shift+PgUp/PgDown - strona góra/dol
 Ctrl+d - zamknij/wyloguj
-Ctrl+l - wyszsc ekran
+Ctrl+l - wyczyść ekran
 
 
 ### Others
 
-Standardowe wejscie, stumien stdin, deskryptor 0, plik
-Standardowe wyjscie, strumien stdout, desktryptor 1, plik
-Standardowe wyjscie bledow stderr,deskryptor 2, plik
+Standardowe wejście, strumień stdin, deskryptor 0, plik
+Standardowe wyjście, strumień stdout, deskryptor 1, plik
+Standardowe wyjście błędów stderr, deskryptor 2, plik
 
 cut -d: -f1 < /etc/passwd
 cat /etc/passwd | cut -d ....
 
 cat /etc/passwd > file
 
--dowiazanie
+-dowiązanie
 cat /etc/passwd > file 2>&1
 
 | - operator potoku
@@ -361,15 +361,4 @@ Primary key fingerprint: 6341 AB27 53D7 8A78 A7C2  7BB1 24C6 A8A7 F4A8 0EB5
 
 gpg --delete-key 6341AB2753D78A78A7C27BB124C6A8A7F4A80EB5
 
-
-
-
-
-
-PROCESY
-
-EUID - w czyim kontekscie i uprawnieniami dziala program
-RUID - kto uruchomil program
-EGID - to samo tylko grupy 
-RGID - to samo tylko grupy
 
