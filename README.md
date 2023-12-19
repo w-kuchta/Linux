@@ -456,7 +456,9 @@ md5sum -c sumy.txt
 sha256sum -c sha256sum.txt.asc   
 
 wget https://www.centos.org/keys/RPM-GPG-KEY-CentOS-7
+
 gpg --show-keys RPM-GPG-KEY-CentOS-7
+
 pub   rsa4096 2014-06-23 [SC]
       6341AB2753D78A78A7C27BB124C6A8A7F4A80EB5
 uid                      CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>
@@ -468,6 +470,7 @@ Key fingerprint = 6341 AB27 53D7 8A78 A7C2  7BB1 24C6 A8A7 F4A8 0EB5
 gpg --import RPM-GPG-KEY-CentOS-7
 
 gpg --list-keys
+
 /home/wkuchta/.gnupg/pubring.kbx
 --------------------------------
 pub   rsa4096 2014-06-23 [SC]
@@ -475,14 +478,15 @@ pub   rsa4096 2014-06-23 [SC]
 uid      
 
 get http://ftp.osuosl.org/pub/centos/7/isos/x86_64/sha256sum.txt.asc
+
 gpg --verify sha256sum.txt.asc
+
 gpg: Signature made czw, 4 sie 2022, 19:58:57 CEST
 gpg:                using RSA key 24C6A8A7F4A80EB5
 gpg: Good signature from "CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>" [unknown]
 gpg: WARNING: This key is not certified with a trusted signature!
 gpg:          There is no indication that the signature belongs to the owner.
 Primary key fingerprint: 6341 AB27 53D7 8A78 A7C2  7BB1 24C6 A8A7 F4A8 0EB5
-
 
 gpg --delete-key 6341AB2753D78A78A7C27BB124C6A8A7F4A80EB5
 
