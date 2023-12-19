@@ -78,104 +78,169 @@
    cut -d: -f1 < /etc/passwd
    ```
 tee - stanadardowe wejście na wyjście i jeszcze d o pliku, rozdziela strumień na dwa
+
 wc - zlicza -l linie, -w słowa, -c znaki
+
 head - wypisz -c znaków, -n linii
+
 tail - wypisz ostatnie -z znaków, -n linii
+
 tr lancuch lancuch - zmian każdy znak z lewego na prawy
+
 expand - zmaien tab na spacje
+
 unexpand - spacje na tabulacje
+
 nl - numeruj linie
+
 od - kody bajtów otrzymanych danych, domyslnie osemkowe
+
 fmt - formatowanie wierszy, zawijanie
-pr - dzieli dane na strony, 
+
+pr - dzieli dane na strony,
+
 split - dzili plik na równe części po 1000 linii i zapisuje z plikach xaa, xab,xac ...
+
 join łączy dwa koniecznie posortowane piki mające wspólną kolumnę
+
 watch -n 1 date - urucmianie polecenia co 1 sekundę
 
 diff test test2 - porównuje 2 pliki jeśli takie same to nic nie wyświetla, jeśli różne wyświetla różnicę
+
 sdiff test test2 - porównuje i wyświetla 2 pliki
    
 **[⬆ Back to Top](#table-of-contents)**
 
 ### Vi
 i - tryb wprowadzania
+
 R - tryb zastępowania
+
 v - wizualny
 
 :q - wyjdź
+
 :q! wyjdź bez zapisu
+
 :w zapisz
+
 :w nazwa - zapisz kopie
+
 :wq - zapisz i wyjdź
+
 :r wstaw zawartość pliku
+
 h j k l - lewo dol góra prawo
+
 ^ $ - początek koniec
+
 w e - nastepne słowo , koniec następnego słowa
+
 gg G - początek pliku, koniec pliku
+
 numer linii gg - przedz do linii
+
 Ctrl-B, Ctr-F - page up, page down
 
 2w - 2 słowa dalej
+
 u - cofnij zmiany
+
 d - usuń
+
 dd - usuń linie
+
 d$ - usuń do końca
+
 d^ - usuń do początku
+
 21dgg - usuń 21 linie
 
 y - kopiuj do bufora
+
 y3w - skopiuj do bufora 3 słowa
+
 3dw - wytnij znak, zaznaczenie
 
 /test Enter- wyszukaj test
+
 n - kolejne wystąpienie w dół
+
 N - kolejne wystąpienie w góre
 
 zastępowanie
+
 zakres - jaki zakres przeszukania :%s/ - cały plik, 2,15s/ (linie od 2 do 15), .,.+6s/(od bieżącej do 6 poniżej), .,$s/(od bieżącego do końca pliku)
+
 wyrażenie - \1 ciąg dopasowany w pierwszym wystąpieniu, \0 - dopasowany ciąg znaków
+
 znaczniki
+
 g - podmiana każdego dopasowanego ciagu a nie tylko pierwszego w linii
+
 i - ignoruj wielkość znaków
+
 c - pytanie do potwierdzenia każdej zmiany
+
 :/s/Windows/Linux/g - zamien wszystkie wystąpienia Windows na Linux
+
 :1,30s/Jan.*Kowalski/dr. \0/g - dodaj dr. przed każdym wystąpieniem Jana Kowalskiego
 
 /etc/vimrc - opcje globalne edytora
+
 ~/.vimrc - opcje lokalne
 
 ### Startup
 
-1. System V 
+1. System V
+   
 /etc/init.d lub /etc/inittab - skrypty startowe
+
 rcS.d, rc5.d,... - uruchamianie w zależności od poziomu pracy
+
 runlevel - poziom pracy
+
 telinit 2 lub init 2 - zmiana poziomu pracy
 
 Usługi są wyłączane a później uruchamiane, uruchamiane i zamykane w kolejności alfabetycznej
+
 S50usluga - start
+
 K50uslug - kill
 
 chkconfig - RHEL
+
 update-rc.d mysql start 01 2 3 4 5 . stop 99 0 1 6 . - Debian
 
 2. Systemd
+   
 Rodzaje jednostek:
+
 service - usluga
 socket - gniazdo
+
 device - urzadzenie fizyczne
+
 mount - punkt montowania
+
 target - określa które usługi trzeba uruchomić 
 
 /lib/systemd/system i /etc/systemd/system - pliki konfiguracyjne
 
 Stany jednostek:
+
  loaded
+ 
  not found
+ 
  masked
+ 
  active
+ 
  inactive
+ 
  enabled
+ 
  disabled
  
  systemctl - zarządza
