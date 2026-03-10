@@ -392,7 +392,7 @@ RGID - to samo tylko grupy
 
 
 PHP8.4 na Ubuntu 24
-
+   ```bash
 sudo apt update
 sudo apt upgrade -y
 sudo apt install software-properties-common ca-certificates apt-transport-https lsb-release -y
@@ -406,4 +406,4 @@ sudo update-alternatives --install /usr/bin/php php /usr/bin/php8.4 84
 sudo update-alternatives --config php  
 sudo update-alternatives --config phpize 
 sudo update-alternatives --config php-config
-
+   ```
