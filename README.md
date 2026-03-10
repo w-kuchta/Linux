@@ -390,3 +390,20 @@ RUID - kto uruchomil program
 EGID - to samo tylko grupy 
 RGID - to samo tylko grupy
 
+
+PHP8.4 na Ubuntu 24
+
+sudo apt update
+sudo apt upgrade -y
+sudo apt install software-properties-common ca-certificates apt-transport-https lsb-release -y
+sudo add-apt-repository ppa:ondrej/php
+sudo apt update
+sudo apt install php8.4
+
+php8.4 -v 
+update-alternatives --list php 
+sudo update-alternatives --install /usr/bin/php php /usr/bin/php8.4 84 
+sudo update-alternatives --config php  
+sudo update-alternatives --config phpize 
+sudo update-alternatives --config php-config
+
