@@ -399,11 +399,15 @@ sudo apt install software-properties-common ca-certificates apt-transport-https 
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
 sudo apt install php8.4
-
+sudo apt install php8.4-xml php8.4-ldap
 php8.4 -v 
 update-alternatives --list php 
 sudo update-alternatives --install /usr/bin/php php /usr/bin/php8.4 84 
 sudo update-alternatives --config php  
 sudo update-alternatives --config phpize 
 sudo update-alternatives --config php-config
+
+sudo a2dismod php8.3
+sudo a2enmod php8.4
+sudo systemctl restart apache2
    ```
